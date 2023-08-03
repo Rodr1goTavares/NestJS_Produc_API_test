@@ -9,11 +9,9 @@ export class ProductDTO {
   private totalPrice: number;
 
   constructor(name: string, price: number, amount: number) {
-    this.id = 0;
     this.name = name;
     this.price = price;
     this.amount = amount;
-    this.totalPrice = 0;
   }
 
   private setId(id: number): void {

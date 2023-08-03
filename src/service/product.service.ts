@@ -5,7 +5,7 @@ import { Product } from 'src/model/product';
 
 @Injectable()
 export class ProductService {
-  // db simulator
+
   private static productList: Product[] = [];
   
   private static toDTOList(productList: Array<Product>) {
