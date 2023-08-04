@@ -8,12 +8,12 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  public get(): Array<ProductDTO> {
+  public get(): Promise<any> {
     return this.productService.read();
   }
 
   @Post()
-  public post(@Body() productDTO: ProductDTO): Array<ProductDTO> {
+  public post(@Body() productDTO: ProductDTO): Promise<any> {
     this.productService.save(ProductDTO.toProduct(productDTO));
     return this.productService.read();
   }

@@ -2,11 +2,13 @@
 import { Injectable } from '@nestjs/common';
 import { ProductDTO } from 'src/api/dto/productDTO';
 import { Product } from 'src/model/product';
+import { PrismaService } from 'src/repository/prisma.service';
+import { ProductRepository } from 'src/repository/productRepository';
 
 @Injectable()
 export class ProductService {
 
-  private static productList: Product[] = [];
+  constructor(private prisma: PrismaService, private productRepository: ProductRepository) {}
   
   private static toDTOList(productList: Array<Product>) {
     return productList.map(
@@ -15,10 +17,10 @@ export class ProductService {
   }
 
   public save(product: Product): void {
-    ProductService.productList.push(product);
+    this.productRepository.save(product);
   }
 
-  public read(): Array<ProductDTO> {
-    return ProductService.toDTOList(ProductService.productList);
+  public read(): Promise<any> {
+    return this.productRepository.read();
   }
 }
